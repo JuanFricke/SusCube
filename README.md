@@ -7,7 +7,7 @@ Começe criando dois diretórios para armazenar os arquivos que serão baixados 
 $ mkdir data
 $ mkdir data/aux
 ```
-Agora use o utilitário **susgrep.sh** para fazer o download das bases de dados que foram utilizadas no SusCube:
+Agora use o utilitário **susgrep.sh** para fazer o download de todas as bases de dados necessárias para o SusCube:
 ```sh
 $ ./susgrep.sh data data/aux
 ```
