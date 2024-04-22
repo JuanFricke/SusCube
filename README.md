@@ -2,6 +2,7 @@
 Analise de dados do sus usando cubo de dados, OLAP e outros conceitos da materia de Big Data, Analytics e Métricas
 
 ## Adquirindo os Dados Brutos
+**Requisitos:** python3, wget e unzip.\
 Começe criando dois diretórios para armazenar os arquivos que serão baixados do DataSus, um para as bases principais e outro para as bases auxiliares:
 ```sh
 $ mkdir data
