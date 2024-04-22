@@ -1,0 +1,67 @@
+#! /usr/bin/python3
+
+import sys
+import os
+
+#
+# Apparently all .cnv files share a similar format. By analyzing some of
+# them, I could identify the recurrent width values used for offsetting 
+# their fields. The amount of offset used seams to be the same in all the
+# files.
+#
+# The following is an example of a line in a .cnv file, denoting its 4 
+# fields. The fields width is written inside of the parenthesis (), except 
+# for the last one, which seams to have a variable width that spans until 
+# the end of the line:
+#
+#      40  Q07.0 Sindr de Arnold-Chiari                       Q070,
+#
+# [-----] [----] [------------------------------------------] [----...]
+#  |       |                   |                                 |
+#  |       > fields[1](6)      > fields[2](44)      fields[3](?) <
+#  |
+#  > fields[0](7)
+#
+def parse_cnv_line(line):
+    return (
+        str(line[:7]),
+        str(line[8:14]),
+        str(line[15:59]),
+        str(line[60:-1]) # Remove \n
+    )
+
+def cnv_to_csv(cnv_path):
+    csv_path = ''.join(os.path.splitext(cnv_path)[:-1]) + '.csv'
+    with open(cnv_path, 'r', encoding='iso8859-1') as cnv_file:
+        # Read lines skipping header
+        cnv_lines = cnv_file.readlines()[1:]
+        csv_lines = []
+
+        for line in cnv_lines:
+            fields = parse_cnv_line(line)
+
+            # Convert to .csv
+            fields = map(lambda field: '"' + field.strip() + '"', fields)
+            csv_lines.append(','.join(fields))
+
+        # Write .csv
+        csv_path = ''.join(os.path.splitext(cnv_path)[:-1]) + '.csv'
+        with open(csv_path, 'w', encoding='iso8859-1') as csv_file:
+            csv_file.writelines(line + '\n' for line in csv_lines)
+
+help_msg = 'Usage: ./cnv2csv file.cnv'
+
+# Check if one and only one arg is beign passed
+if len(sys.argv) != 2:
+    print(help_msg)
+    exit(1)
+
+# Check if passed arg has the correct extension
+path = sys.argv[1]
+ext = os.path.splitext(path)[-1]
+if not ext in ('.cnv', '.CNV'):
+    print(help_msg)
+    exit(1)
+
+cnv_to_csv(path)
+
