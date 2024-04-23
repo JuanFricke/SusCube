@@ -6,6 +6,7 @@ __pycache__/
 # csv and dbf
 *.csv
 *.dbf
+*.db
 data/
 
 # C extensions
