@@ -31,6 +31,10 @@ for dbf_file in dbf_files:
 
     print("Criando tabela '{}'...".format(table_name))
 
+    # Itera sobre as linhas do DataFrame e imprime cada linha
+    for index, row in df.iterrows():
+        print("Adicionando linha:", row)
+
     # Salva o DataFrame no banco de dados DuckDB
     df.to_sql(table_name, conn, index=False)
 
@@ -46,6 +50,10 @@ for csv_file in csv_files:
     df = pd.read_csv(os.path.join(data_directory, 'aux', csv_file))
 
     print("Criando tabela '{}'...".format(table_name))
+
+    # Itera sobre as linhas do DataFrame e imprime cada linha
+    for index, row in df.iterrows():
+        print("Adicionando linha:", row)
 
     # Salva o DataFrame no banco de dados DuckDB
     df.to_sql(table_name, conn, index=False)
