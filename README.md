@@ -14,3 +14,17 @@ Agora use o utilitário **susgrep.sh** para fazer o download de todas as bases d
 $ ./susgrep.sh data data/aux
 ```
 > A conversão dos arquivos baixados para formatos úteis (como .dbc para .dbf e .cnv para .csv) será feita automaticamente durante a execução do script.
+
+> **Erros comuns:**
+> Pacote unzip não está instalado no sistema
+> WSL não reconhece cnv2csv
+
+**Correções:**
+
+```bash
+$ sudo apt install unzip
+```
+
+```bash
+$ dos2unix cnv2csv
+```
