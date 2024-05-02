@@ -15,7 +15,7 @@ $ ./susgrep.sh data data/aux
 ```
 > A conversão dos arquivos baixados para formatos úteis (como .dbc para .dbf e .cnv para .csv) será feita automaticamente durante a execução do script.
 
-> **Erros comuns:**
+## **Erros comuns no WSL:**
 > Pacote unzip não está instalado no sistema
 > WSL não reconhece cnv2csv
 
