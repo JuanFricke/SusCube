@@ -161,7 +161,7 @@ from=2014
 to=2024
 
 # TODO: So aceita arquivos com ext .dbc e nao .DBC
-for file in $(datesus_aamm DNRS $from $to .dbc); do
+for file in $(datesus_aamm ATDRS $from $to .dbc); do
     # Checa se o arquivo existe, visto que algum
     # mes pode ainda nao ter dados
     # if `validate_url $DNRS_DIR/$file > /dev/null`;
@@ -171,6 +171,12 @@ for file in $(datesus_aamm DNRS $from $to .dbc); do
 
     echo "Baixando $file..."
     wget -q $ATDRS_DIR/$file
+
+    # O arquivo nao existe
+    if [ $? -ne 0 ]; then
+        echo "Arquivo $file nao encontrado! Continuando..."
+        continue
+    fi
 
     # blast-dbf cortesia de: 
     # https://github.com/eaglebh/blast-dbf
