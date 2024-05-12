@@ -34,8 +34,8 @@ def cnv_to_csv(cnv_path):
     csv_path = ''.join(os.path.splitext(cnv_path)[:-1]) + '.csv'
     with open(cnv_path, 'r', encoding='iso8859-1') as cnv_file:
         # Skip comments and header
-        # cnv_lines = [line for line in cnv_file.readlines() if not line.startswith(';')][1:]
-        cnv_lines = cnv_file.readlines()[1:]
+        cnv_lines = [line for line in cnv_file.readlines() if not line.startswith(';')][1:]
+        # cnv_lines = cnv_file.readlines()[1:]
 
         csv_lines = []
         for line in cnv_lines:
