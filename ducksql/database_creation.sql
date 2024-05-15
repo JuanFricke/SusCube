@@ -64,3 +64,4 @@ CREATE TABLE atdrs(
   atd_interc VARCHAR(1),
   atd_seperi VARCHAR(1),
   ap_natjur  VARCHAR(4)
+);
