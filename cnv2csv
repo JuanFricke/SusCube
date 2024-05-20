@@ -35,7 +35,7 @@ def cnv_to_csv(cnv_path):
     with open(cnv_path, 'r', encoding='iso8859-1') as cnv_file:
         # Read lines skipping header
         cnv_lines = cnv_file.readlines()[1:]
-        csv_lines = []
+        csv_lines = ['"id", "descricao", "codigo"']
 
         for line in cnv_lines:
             fields = parse_cnv_line(line)
