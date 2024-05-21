@@ -25,8 +25,8 @@ import os
 def parse_cnv_line(line):
     return (
         str(line[:7]),
-        str(line[8:14]),
-        str(line[15:59]),
+        # str(line[8:14]),
+        str(line[9:59]),
         str(line[60:-1]) # Remove \n
     )
 
