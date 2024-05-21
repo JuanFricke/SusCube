@@ -17,42 +17,46 @@ AUX_DIR="${2%/}"
 
 DATASUS_FTP="ftp://ftp.datasus.gov.br"
 
-SIASUS_DIR=$DATASUS_FTP/dissemin/publicos/SIASUS
-ATDRS_DIR=$SIASUS_DIR/200801_/Dados
-ATDRS_AUX_DIR=$SIASUS_DIR/200801_/Auxiliar
+SIASUS_DIR="$DATASUS_FTP/dissemin/publicos/SIASUS"
+ATDRS_DIR="$SIASUS_DIR/200801_/Dados"
+ATDRS_AUX_DIR="$SIASUS_DIR/200801_/Auxiliar"
 
 # Lista de arquivos auxiliares em .cnv
 aux_files_cnv=(
-    "rs_divadm.cnv"  # Algo de regioes administrativas
-    "rs_micibge.cnv" # Codigo de microregioes
-    "rs_macsaud.cnv" # Macroregioes de saude???
+    # "rs_divadm.cnv"  # Algo de regioes administrativas
+    # "rs_micibge.cnv" # Codigo de microregioes
+    # "rs_macsaud.cnv" # Macroregioes de saude???
     "rs_municip.cnv" # Municipios
-    "rs_regmetr.cnv" # Regioes metropolitanas
-    "rs_regsaud.cnv" # Regioes de saude???
+    # "rs_regmetr.cnv" # Regioes metropolitanas
+    # "rs_regsaud.cnv" # Regioes de saude???
 
-    "CARATER.CNV"    # Tem ate coisas de acidente aqui, olha so!
-    "CODOCO.CNV"     # Algo sobre aprovamento de valores e producoes
-    "COMPLEX.CNV"    # Complexidade
-    "ESFERA.CNV"     # Esfera federal, estadual, estabelecimento privado, etc...
-    "MED_ONC.CNV"    # Medicamentos (oncologicos?)
+    # "CARATER.CNV"    # Tem ate coisas de acidente aqui, olha so!
+    # "CODOCO.CNV"     # Algo sobre aprovamento de valores e producoes
+    # "COMPLEX.CNV"    # Complexidade
+    # "ESFERA.CNV"     # Esfera federal, estadual, estabelecimento privado, etc...
+    # "MED_ONC.CNV"    # Medicamentos (oncologicos?)
     "MOTSAIPE.CNV"   # Motivo de alta ou algo assim
-    "PT_TABBA.CNV"   # Algo sobre comorbidade
-    "QDT_TRAN.CNV"   # Transplantado
+    # "PT_TABBA.CNV"   # Algo sobre comorbidade
+    # "QDT_TRAN.CNV"   # Transplantado
     "RACA_COR.CNV"   # Cor
-    "REGRA_C.cnv"    # Regra contratual
+    # "REGRA_C.cnv"    # Regra contratual
     "SEXO.CNV"       # Sexo
     "TP_APAC.CNV"    # Tipo de APAC
-    "TP_ATEND.CNV"   # Tipo de atendimento
-    "TP_DROGA.cnv"   # Tipo de droga (droga mesmo, nao remedio)
-    "TP_ESTAB.CNV"   # Tipo de estabelecimento de saude
-    "UF.CNV"         # Estado brasileiro
-    "UFNACIO.CNV"    # Pais
-    "atd_acevas.cnv" # Tipo acesso vascular
+    # "TP_ATEND.CNV"   # Tipo de atendimento
+    # "TP_DROGA.cnv"   # Tipo de droga (droga mesmo, nao remedio)
+    # "TP_ESTAB.CNV"   # Tipo de estabelecimento de saude
+    # "UF.CNV"         # Estado brasileiro
+    # "UFNACIO.CNV"    # Pais
+    # "atd_acevas.cnv" # Tipo acesso vascular
     "atd_caract.cnv" # Carater do tratamento
-    "atd_dtcli.cnv"  # ?
-    "atd_dtpdr.cnv"  # ??
+    # "atd_dtcli.cnv"  # ?
+    # "atd_dtpdr.cnv"  # ??
     "atd_seapto.cnv" # Apto pra transplante
-    "atd_sittra.cnv" # Situacao de tratamento
+    "atd_sittra.cnv" # Situacao de transplante
+    "atd_maisne.cnv" # Mais de 1 ano em dialise
+    "atd_sitini.cnv" # Situacao inicial
+    "IDADE.CNV"      # Idade 
+    # "INVASAO.cnv"    # Aliens
 
     # Talvez esses sejam uteis pra fazer o cubo de dados???
     "ANO.CNV"
@@ -62,25 +66,25 @@ aux_files_cnv=(
 # Lista de arquivos auxiliares em .dbf
 aux_files_dbf=(
     "CADGERRS.dbf"      # CNESBR so que com mais detalhes (aparentemente)
-    "INE_EQUIPE_RS.dbf" # Equipes de funcionarios da saude???
-    "CBO.dbf"           # Codigo de ocupacao (profissao)
-    "CNESBR.dbf"        # Codigo de estabelecimento de saude
-    "HUF_FILIAL.dbf"    # Hospital universitario
-    "HUF_MEC.dbf"       # Hospital universitario ++
+    # "INE_EQUIPE_RS.dbf" # Equipes de funcionarios da saude???
+    # "CBO.dbf"           # Codigo de ocupacao (profissao)
+    # "CNESBR.dbf"        # Codigo de estabelecimento de saude
+    # "HUF_FILIAL.dbf"    # Hospital universitario
+    # "HUF_MEC.dbf"       # Hospital universitario ++
     "S_CID.DBF"         # Codigo internacional de doencas
-    "S_CLASSEN.dbf"     # Algo relacionado ao tipo de atendimento...?
-    "S_FORNEC.DBF"      # Fornecedor de equipamentos medicos, talvez seja interessante!
-    "TB_FORMA.DBF"      # Algo relacinado a medicamentos???
+    # "S_CLASSEN.dbf"     # Algo relacionado ao tipo de atendimento...?
+    # "S_FORNEC.DBF"      # Fornecedor de equipamentos medicos, talvez interessante!
+    # "TB_FORMA.DBF"      # Algo relacinado a medicamentos???
     "TB_SIGTAW.dbf"     # Algo relacionado a cobrancas ou pagamentos???
-    "TB_SUBGR.DBF"      # Subgrupos
-    "TP_FINAN.dbf"      # Financiamento???
-    "tp_find.dbf"       # Parece ser um complementar para o TB_SIGTAW
+    # "TB_SUBGR.DBF"      # Subgrupos
+    # "TP_FINAN.dbf"      # Financiamento???
+    # "tp_find.dbf"       # Parece ser um complementar para o TB_SIGTAW
 )
 
-cd $AUX_DIR
+cd "$AUX_DIR"
 
 echo "Baixando arquivos auxiliares..."
-wget -q $ATDRS_AUX_DIR/TAB_SIA.zip
+wget -q "$ATDRS_AUX_DIR/TAB_SIA.zip"
 
 echo "Descompactando arquivos auxiliares..."
 unzip -q TAB_SIA.zip
@@ -102,7 +106,7 @@ for file in "${aux_files_cnv[@]}"; do
     ./cnv2csv $cur_file_path 
 done
 
-cd $AUX_DIR/CNV
+cd "$AUX_DIR/CNV"
 
 # Removendo os .cnv que sobraram
 echo "Limpando o lixo..."
@@ -110,7 +114,7 @@ rm *.cnv && rm *.CNV
 cd ..
 mv CNV CSV
 
-cd $TOP_DIR/$AUX_DIR/DBF
+cd "$TOP_DIR/$AUX_DIR/DBF"
 
 # Removendo os .dbf nao utilizados
 all_dbfs=($(find ./ -type f -name "*.dbf"))
