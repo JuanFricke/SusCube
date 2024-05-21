@@ -48,10 +48,11 @@ def dbf_insert_to_database(table: DBF, database: duckdb.DuckDBPyConnection):
 def csv_to_database(csv_name):   
     csv_name = csv_name.split(".")[0]
     database.sql(
-        f"INSERT INTO {csv_name} SELECT * FROM read_csv('{dbf_directory}/aux/{csv_name}.csv', null_padding = true, ignore_errors = true);"
+        f"CREATE TABLE {csv_name} AS FROM read_csv('{aux_csv_directory}/{csv_name}.csv', null_padding = true, ignore_errors = true);"
     )
 
 dbf_directory = "./data"
+aux_csv_directory = f"{dbf_directory}/aux/CSV"
 output_directory = "./output_juntadb"
 
 if os.path.exists(output_directory+"/databasemuitofoda.db"):
@@ -62,13 +63,10 @@ if not os.path.exists(output_directory):
 database = duckdb.connect(f"{output_directory}/databasemuitofoda.db")
 
 dnrs_db_files = [f for f in os.listdir(dbf_directory) if f.endswith('.dbf')]
-aux_db_files = [f for f in os.listdir(dbf_directory+"/aux") if f.endswith('.csv')]
+aux_db_files = [f for f in os.listdir(aux_csv_directory) if f.endswith('.csv')]
+aux_dbf_files = [f for f in os.listdir(dbf_directory+"/aux/DBF") if f.endswith('.dbf')]
 
 
-## IGNORA ESSA PARADA DE MACACO FOI LITERAL PRA TESTE OK 
-## O BANCO JA VAI TA GERADO, DPS TENHO Q VER COMO EU PASSO UM ARQUIVO SQL PRA RODAR
-
-# Open and read the file as a single buffer
 fd = open('./ducksql/database_creation.sql', 'r')
 sqlFile = fd.read()
 fd.close()
@@ -82,6 +80,15 @@ for dbf_name in dnrs_db_files:
     dbf_insert_to_database(table, database)
     counter += 1
     print(f"\r{counter}/{len(dnrs_db_files)} {round((counter/len(dnrs_db_files))*100, 2)}%",end="")
+print(f"\nTodos os DBFs foram inseridos na Base de Dados em {round(time.time() - start_time, 2)} segundos")
+
+start_time = time.time()
+counter = 0
+for dbf_name in aux_dbf_files:
+    table = DBF(f'{dbf_directory}/aux/DBF/{dbf_name}', 'latin-1')
+    dbf_create_to_database(table, database)
+    counter += 1
+    print(f"\r{counter}/{len(dnrs_db_files)} {round((counter/len(aux_dbf_files))*100, 2)}%",end="")
 print(f"\nTodos os DBFs foram inseridos na Base de Dados em {round(time.time() - start_time, 2)} segundos")
 
 start_time = time.time()
