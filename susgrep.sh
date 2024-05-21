@@ -69,7 +69,7 @@ echo "Limpando o lixo..."
 rm NASC_NOV_TAB.zip
 rm *.!(DBF|dbf|CNV|cnv)
 
-cd $TOP_DIR
+cd "$TOP_DIR"
 
 # Convertendo os arquivos .cnv solicitados
 for file in "${aux_files_cnv[@]}"; do
@@ -94,7 +94,7 @@ for file in "${all_dbfs[@]}"; do
     fi
 done
 
-cd $TOP_DIR
+cd "$TOP_DIR"
 
 #
 # Lista arquivos baseado em um intervalo de tempo
@@ -156,7 +156,7 @@ for file in $(datesus DNRS $from $to .dbc); do
     # blast-dbf cortesia de: 
     # https://github.com/eaglebh/blast-dbf
     echo "Convertendo $file para .dbf..."
-    eval "$TOP_DIR/blast-dbf $file ${file%.*}.dbf"
+    eval "'$TOP_DIR/blast-dbf' $file ${file%.*}.dbf"
 done
 
 echo "Limpando o lixo..."
