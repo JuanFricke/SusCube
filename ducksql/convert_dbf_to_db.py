@@ -9,7 +9,7 @@ from dbfread import DBF
 def DBF_to_CSV(dbf_table: DBF, output_location: str, output_name="temp.csv") -> str:
     csv_path = join(output_location, output_name)
     
-    with open(csv_path, 'w', newline = '') as file:
+    with open(csv_path, 'w', encoding="utf-8", newline = '') as file:
         # Get writer object
         writer = csv.writer(file)
         
@@ -21,6 +21,9 @@ def DBF_to_CSV(dbf_table: DBF, output_location: str, output_name="temp.csv") -> 
             writer.writerow(list(record.values()))
             
     return csv_path
+
+def print_progress(counter: int, iterable: list) -> str:
+    print(f"\r{counter}/{len(iterable)} {(counter/len(iterable))*100:.2f}%",end="")
     
 def main():
     PROJECT_DIR = realpath(join(dirname(realpath(__file__)), ".."))    
@@ -78,9 +81,9 @@ def main():
         
         # Contador de progresso
         counter += 1
-        print(f"\r{counter}/{len(dnrs_db_files)} {round((counter/len(dnrs_db_files))*100, 2)}%",end="")
+        print_progress(counter, dnrs_db_files)
         
-    print(f"\nOperação concluída em {round(time.time() - start_time, 2)} segundos")
+    print(f"\nATRDS gerado em {(time.time() - start_time):.2f} segundos")
 
 
     # Inserindo DBFs auxiliares na Base de Dados ______________________________
@@ -104,9 +107,9 @@ def main():
         
         # Contador de progresso
         counter += 1
-        print(f"\r{counter}/{len(aux_dbf_files)} {round((counter/len(aux_dbf_files))*100, 2)}%",end="")
+        print_progress(counter, aux_dbf_files)
         
-    print(f"\nOperação concluída em {round(time.time() - start_time, 2)} segundos")
+    print(f"\nCSVs auxiliares importados em {(time.time() - start_time):.2f} segundos")
     
     # Inserindo CSVs auxiliares na Base de Dados ______________________________
     start_time = time.time()
@@ -114,18 +117,18 @@ def main():
     print("Inserindo CSVs na Base de Dados:")
     
     counter = 0
-    for csv_name in aux_csv_files:
-        table_name = csv_name.replace(".csv", "")        
+    for csv_name in aux_csv_files:                
+        table_name = csv_name.replace(".csv", "")         
         csv_path = join(DATA_DIR, "aux", "CSV", csv_name)
         
         database.sql(
-            f"CREATE TABLE {table_name} AS FROM read_csv('{csv_path}', null_padding = true, ignore_errors = true);"
+            f"CREATE TABLE {table_name} AS FROM read_csv('{csv_path}');"
         )
         
         # Contador de progresso
         counter += 1
-        print(f"\r{counter}/{len(aux_csv_files)} {round((counter/len(aux_csv_files))*100, 2)}%",end="")
+        print_progress(counter, aux_csv_files)
         
-    print(f"\nTodos os DBFs foram inseridos na Base de Dados em {round(time.time() - start_time, 2)} segundos")
+    print(f"\nTodos os DBFs foram inseridos na Base de Dados em {(time.time() - start_time):.2f} segundos")
     
 main()
