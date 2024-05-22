@@ -43,7 +43,7 @@
 
 > Portanto, como alternativas para as opções recomendadas inicialmente, foram escolhidas as seguintes tecnologias:
 > - _Python_: para o processamento de dados e automação do processo de criação do banco de dados, visto que essa liguagem facilita o processo de prototipação através de scripts;
-> - _Duck DB_: como banco de dados e SGBD, por suas otimizações no que tange o gerenciamento de cubos de dados e a execução de instruções _OLAP_;
+> - _Duck DB_: como banco de dados, por suas otimizações no que tange o gerenciamento de cubos de dados e a execução de instruções _OLAP_;
 > - _Pandas_: como biblioteca para a organização de dados e para a geração de relatórios;
 > - _DBeaver_: como ferramenta para o gerenciamento e a visualização do banco de dados, bem como para a organização do modelo estrela multidimensional.
 
