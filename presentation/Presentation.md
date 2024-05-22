@@ -46,13 +46,15 @@ style: |
 
 # Descrição do problema
 
+A partir dos dados representados pelo modelo lógico e que reflete o ambiente OLTP dos sistemas do DATASUS, pretende-se projetar um sistema OLAP para facilitar o processo de análise dos dados e geração de insights.
 
-
----
-
-# Descrição do problema
+![:100% w:1000](photos/Roll-up-and-Drill-down-operations.png)
 
 ---
+
+![:100% w:800](photos/star-vs-snow.jpg)
+Com base nisso, o sistema deverá ser projetado em modelo de estrela ou floco-de-neve, bem como deverá ser capaz de performar consultas OLAP e operações de roll-up e drill-down sobre os dados da base selecionada.
+
 
 # Objetivos
 
