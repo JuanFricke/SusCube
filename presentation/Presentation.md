@@ -19,13 +19,34 @@ style: |
 # Processos de negócios do DATASUS...
 
 
+
+
 ---
 
 # Concepção de um plano de projeto
 
+* Uma análise preliminar revelou a extensão considerável e a complexidade do escopo do projeto
+
+* repositório Git central
+*controle temporal e espacial sobre o processo de desenvolvimento.*
+
+---
+
+# Vantagens de um repositorio git centralizado
+
+* controle temporal e espacial sobre o processo de desenvolvimento.
+
+* estruturação do projeto
+
+* centrada à automação da coleta dos dados
+
+* facilitar o manuseio das bases utilizadas
+
 ---
 
 # Descrição do problema
+
+
 
 ---
 
