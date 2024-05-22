@@ -19,8 +19,6 @@ style: |
 # Processos de negócios do DATASUS...
 
 
-
-
 ---
 
 # Concepção de um plano de projeto
@@ -53,6 +51,7 @@ A partir dos dados representados pelo modelo lógico e que reflete o ambiente OL
 ---
 
 ![:100% w:800](photos/star-vs-snow.jpg)
+
 Com base nisso, o sistema deverá ser projetado em modelo de estrela ou floco-de-neve, bem como deverá ser capaz de performar consultas OLAP e operações de roll-up e drill-down sobre os dados da base selecionada.
 
 ---
@@ -68,13 +67,9 @@ Com base nisso, o sistema deverá ser projetado em modelo de estrela ou floco-de
 ---
 
 
-## Objetivo principal:
+# Objetivos:
 
   Desenvolver um data warehouse para realizar consultas OLAP na base de dados de APAC de Tratamento Dialítico do DataSUS.
-
----
-
-## Objetivo alternativo:
 
 - Experimentar tecnologias alternativas e emergentes:
 - Expandir conhecimento além do conteúdo das aulas.
@@ -85,15 +80,23 @@ Com base nisso, o sistema deverá ser projetado em modelo de estrela ou floco-de
 
 # Metodologia
 
-devido a algumas dificuldades encontradas durante a fase inicial do projeto, principalmente perante a questão da virtualização, bem como na interação com o SGBD DB2, mas também pelo interesse em testar abordagens novas, decidiu-se que grande parte do trabalho seria feito com o uso de tecnologias diferentes das apresentadas como modelo. 
+- _Python_: para o processamento de dados e automação do processo de criação do banco de dados;
+- _Duck DB_: como banco de dados, por suas otimizações no que tange o gerenciamento de cubos de dados e a execução de instruções _OLAP_;
+- _Pandas_: como biblioteca para a organização de dados e para a geração de relatórios;
+- _DBeaver_: como ferramenta para o gerenciamento e a visualização do banco de dados, bem como para a organização do modelo estrela multidimensional.;
+
+<div style="display: flex;">
+  <img src="photos/duckdb.jpg" alt="Description of image 1" style="width: 50%;">
+  <img src="photos/dbeaver.png" alt="Description of image 2" style="width: 50%;">
+</div>
 
 ---
 
-## alternativas:
-* ######  _Python_: para o processamento de dados e automação do processo de criação do banco de dados;
-* ######  _Duck DB_: como banco de dados, por suas otimizações no que tange o gerenciamento de cubos de dados e a execução de instruções _OLAP_;
-* ###### _Pandas_: como biblioteca para a organização de dados e para a geração de relatórios;
-* ######  _DBeaver_: como ferramenta para o gerenciamento e a visualização do banco de dados, bem como para a organização do modelo estrela multidimensional.;
+# Base de Dados
+
+![](photos/hemod.png) 
+- APAC de Tratamentos Dialíticos;
+- Dados do Rio Grande do Sul.
 
 ---
 
