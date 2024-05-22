@@ -64,6 +64,7 @@ style: |
 # Exemplificação da geração de relatórios usando ferramenta OLAP
 
 ---
+
 ![bg center:100% w:700](photos/susgpre.sh-in-action.png)
 
 ---

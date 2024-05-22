@@ -52,8 +52,13 @@ LEFT JOIN main.rs_macsaud AS mac
 -- Dimensão Saida
 CREATE VIEW Dim_Saida AS
 SELECT DISTINCT
-    CONCAT(ap_motsai, ap_alta, ap_obito, ap_encerr, ap_perman, ap_transf) AS Saida_ID,
-    ap_motsai, ap_alta, ap_obito, ap_encerr, ap_perman, ap_transf
+    CONCAT(ap_motsai, ap_alta, ap_obito, ap_encerr, ap_perman, ap_transf) AS id,
+    ap_motsai AS motivo_saida, 
+    ap_alta AS alta, 
+    ap_obito AS obito, 
+    ap_encerr AS encerramento, 
+    ap_perman AS permanencia, 
+    ap_transf AS transferencia
 FROM main.atdrs;
 
 -- Dimensão CID
@@ -81,6 +86,7 @@ SELECT
 	atd_maisne AS dialise_recorrente,
 	
 	--Valores do fato de outras tabelas
+	pripal.IP_DSCR  AS procedimento_realizado,
 	atdcaract.descr AS caracteristica_tratamento,
 	TPAPAC.descr AS tipo_APAC,
 	idade.descr AS idade_paciente,
@@ -90,6 +96,8 @@ SELECT
 	sit_tra.descr AS situacao_transplante,
 	se_apto.descr AS se_apto_transplante
 FROM main.atdrs AS atdrs
+LEFT JOIN main.tb_sigtaw AS pripal
+	ON atdrs.ap_pripal = pripal.IP_COD
 LEFT JOIN main.atd_caract AS atdcaract
 	ON atdrs.atd_caract = atdcaract.codigo
 LEFT JOIN main.TP_APAC AS TPAPAC
