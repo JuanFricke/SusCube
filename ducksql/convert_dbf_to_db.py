@@ -29,6 +29,7 @@ def main():
     PROJECT_DIR = realpath(join(dirname(realpath(__file__)), ".."))    
     DATA_DIR = join(PROJECT_DIR, "data")
     DB_SCHEMA = join(PROJECT_DIR, "ducksql", "database_creation.sql")
+    OLAP_SCHEMA = join(PROJECT_DIR, "ducksql", "OLAP_schema.sql")
     OUTPUT_DIR = join(PROJECT_DIR, "output_db")
     OUTPUT_DB_PATH = join(OUTPUT_DIR, "database.db")
 
@@ -130,5 +131,11 @@ def main():
         print_progress(counter, aux_csv_files)
         
     print(f"\nTodos os DBFs foram inseridos na Base de Dados em {(time.time() - start_time):.2f} segundos")
+    
+    print("Criando schema OLAP:")
+    # Executa script sql para criar schema OLAP
+    with open(OLAP_SCHEMA, 'r') as file:
+        database.execute(file.read())
+    print("Schema OLAP criado com sucesso!")
     
 main()
