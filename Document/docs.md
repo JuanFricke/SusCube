@@ -149,4 +149,13 @@
 
 ## 2.6 Exemplificação de um CUBO DE DADOS (com dados)
 
+Script para crição do modelo dimensional em views
+![Script para cricao do modelo dimensional em views](../ducksql/OLAP_schema.sql)
+
 ## 2.7 Exemplificação da geração de relatórios usando o Excel (ou outra ferramenta) como ferramenta OLAP
+
+Para geração de relatõrios, utilizamos Jupyter notebooks com bibliotecas de python como pandas, seaborn e numpy em conjunto com a API do DuckDB para python 
+
+![](../presentation/photos/tipos_saida.png)
+
+![](../presentation/photos/invasao_municipal.png)
