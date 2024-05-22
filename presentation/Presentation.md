@@ -189,12 +189,4 @@ GROUP BY dd.mes;
 
 ---
 
-![bg center:100% w:700](photos/susgpre.sh-in-action.png)
-
----
-
-![bg center:100% w:700](photos/First-Version-running.png)
-
----
-
 # Obrigado!
