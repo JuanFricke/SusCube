@@ -1,3 +1,12 @@
+# 0. Introdução:
+> Este projeto tem como objetivo principal a criação de um data warehouse e um cubo de dados para análise do tratamento dialítico no Rio Grande do Sul. Esses dados serão extraídos da base de dados pública do Datasus, a qual é mantida e disponibilizada pelo governo federal do Brasil e contém dados referentes a questões de saúde pública no Sistema Único de Saúde.
+
+> Para contextualizar, um data warehouse é, em suma, uma estrutura centralizada de armazenamento de dados. Ela está relacionada ao conceito de Big Data, ou seja, é projetada para o uso em sistemas complexos onde haja uma grande vazão de dados variados.
+
+> Além disso, um data warehouse geralmente está atrelado a alguns outros conceitos, como cubos de dados e ferramentas OLAP. A união dessas tecnologias possibilita a execução de análises mais completas sobre uma base de dados, envolvendo o uso de estruturas multidimensionais para representar, por exemplo, dimensões de tempo em diferentes granulariades. A aplicação disso culmina na geração de insights relevantes para o contexto no qual a base está inserida. 
+
+> Neste documento, descreveremos em detalhes a concepção, implementação e resultados deste projeto, destacando as etapas, metodologias e ferramentas utilizadas ao longo do processo. Por meio dessa análise, esperamos contribuir para o avanço do conhecimento e práticas relacionadas ao tratamento dialítico, bem como inspirar futuras iniciativas de análise de dados na área da saúde.
+
 # 1. Concepção do projeto:
 
 ## 1.1 Concepção de um plano de projeto
@@ -6,7 +15,7 @@
 
 > Logo, ao invés de ser feito um planejamento prévio completo para o projeto, a alternativa que foi encontrada para organizar o desenvolvimento foi a criação de um repositório Git central. Nesse repositório foi armazenado todo o progresso do projeto, o que ajudou a manter um controle temporal e espacial sobre o processo de desenvolvimento. 
 
-> A utilização de um repositório central também se mostrou de grande utilidade na questão da estruturação do projeto, já que tornou obrigatória a busca por uma abordagem mais centrada à automação da coleta dos dados. Isto feito a fim de otimizar o uso de armazenamento no repositório, além de facilitar o manuseio das bases utilizadas.
+> A utilização de um repositório central também se mostrou de grande utilidade na questão da estruturação do projeto, já que tornou obrigatória a busca por uma abordagem mais centrada à automação da coleta dos dados. Isto foi feito a fim de otimizar o uso de armazenamento no repositório, além de facilitar o manuseio das bases utilizadas.
 
 ## 1.2 Descrição do problema
 
@@ -24,19 +33,19 @@
 
 ## 1.4 Objetivos
 
-> Este estudo de caso tem como objetivo principal desenvolver uma solução de apoio a decisões para os gestores de saúde pública.
+> Este estudo de caso tem como objetivo principal desenvolver uma um sistema de data warehouse capaz de realizar consultas OLAP na base de dados de APAC de Tratamento Diaálitico. Junto a isso, ele também proporciona uma forma de reconhecimento e aprendizagem sobre os tópicos que envolvem a área sistemas distribuídos reais e em produção, e que possuam uma infraestrutura que pode ser considerada complexa, como é o caso do DataSUS.
+
+> Como objetivo alternativo, optou-se pela experimentação a partir do uso de tecnologias alternativas e emergentes, as quais serão discutidades no próximo tópico, a fim de se expandir o conhecimento para além do que foi visto durante as aulas. Para isso, serão aplicados conceitos fundamentais do Big Data de uma maneira iterativa durante o desenvolvimento, de maneira que se possa identificar como ocorrerão as interações entre os diferentes componentes do sistema no seu funcionamento. 
 
 ## 1.4 Metodologia
 
-> Foi decidido pelo grupo que todo o trabalho seria feito por tecnologias diferentes devido a ser muito trabalhoso virtualizar uma imagem de _Windows_ 7 no sistema operacional _Linux_ e utilizar tecnologias legado.
-> Portanto por foi escolhido:
-> - _Python_ para o processamento de dados e automação do processo de criação do banco de dados
-> - _Duck DB_ como Banco de dados por suas otimizações para _OLAP_
-> - _Pandas_ como Biblioteca que lida com organização de dados para a geração de relatórios
+> Como mencionado anteriormente, devido a algumas dificuldades encontradas durante a fase inicial do projeto, principalmente perante a questão da virtualização, bem como na interação com o SGBD DB2, mas também pelo interesse em testar abordagens novas, decidiu-se que grande parte do trabalho seria feito com o uso de tecnologias diferentes das apresentadas como modelo. 
 
-## 1.5 Cronograma
-
-> !!! Não temos então acho q da pra ignorar esse topico
+> Portanto, como alternativas para as opções recomendadas inicialmente, foram escolhidas as seguintes tecnologias:
+> - _Python_: para o processamento de dados e automação do processo de criação do banco de dados, visto que essa liguagem facilita o processo de prototipação através de scripts;
+> - _Duck DB_: como banco de dados e SGBD, por suas otimizações no que tange o gerenciamento de cubos de dados e a execução de instruções _OLAP_;
+> - _Pandas_: como biblioteca para a organização de dados e para a geração de relatórios;
+> - _DBeaver_: como ferramenta para o gerenciamento e a visualização do banco de dados, bem como para a organização do modelo estrela multidimensional.
 
 # 2. Implementação do Plano de Projeto proposto – critérios técnicos
 
