@@ -55,6 +55,13 @@ A partir dos dados representados pelo modelo lógico e que reflete o ambiente OL
 ![:100% w:800](photos/star-vs-snow.jpg)
 Com base nisso, o sistema deverá ser projetado em modelo de estrela ou floco-de-neve, bem como deverá ser capaz de performar consultas OLAP e operações de roll-up e drill-down sobre os dados da base selecionada.
 
+---
+
+# Justificativa
+
+
+
+---
 
 # Objetivos
 

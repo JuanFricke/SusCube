@@ -3,7 +3,7 @@
 
 > Para contextualizar, um data warehouse é, em suma, uma estrutura centralizada de armazenamento de dados. Ela está relacionada ao conceito de Big Data, ou seja, é projetada para o uso em sistemas complexos onde haja uma grande vazão de dados variados.
 
-> Além disso, um data warehouse geralmente está atrelado a alguns outros conceitos, como cubos de dados e ferramentas OLAP. A união dessas tecnologias possibilita a execução de análises mais completas sobre uma base de dados, envolvendo o uso de estruturas multidimensionais para representar, por exemplo, dimensões de tempo em diferentes granulariades. A aplicação disso culmina na geração de insights relevantes para o contexto no qual a base está inserida. 
+> Além disso, um data warehouse geralmente está atrelado a alguns outros conceitos, como cubos de dados e ferramentas OLAP. A união dessas tecnologias possibilita a execução de análises mais completas sobre uma base de dados, envolvendo o uso de estruturas multidimensionais para representar, por exemplo, dimensões de tempo em diferentes granulariades.  
 
 > Neste documento, descreveremos em detalhes a concepção, implementação e resultados deste projeto, destacando as etapas, metodologias e ferramentas utilizadas ao longo do processo. Por meio dessa análise, esperamos contribuir para o avanço do conhecimento e práticas relacionadas ao tratamento dialítico, bem como inspirar futuras iniciativas de análise de dados na área da saúde.
 
@@ -19,7 +19,7 @@
 
 ## 1.2 Descrição do problema
 
-> A partir dos dados representados pelo modelo lógico e que reflete o ambiente OLTP dos sistemas do DATASUS, pretende-se projetar um sistema OLAP para facilitar o processo de análise dos dados e geração de insights.
+> A partir dos dados representados pelo modelo lógico e que reflete o ambiente OLTP dos sistemas do DATASUS, pretende-se projetar um sistema OLAP para facilitar o processo de análise dos dados e geração de valor e dados facilmente usaveis por humanos.
 
 > Com base nisso, o sistema deverá ser projetado em modelo de estrela ou floco-de-neve, bem como deverá ser capaz de performar consultas OLAP e operações de roll-up e drill-down sobre os dados da base selecionada.
 
@@ -27,7 +27,7 @@
 
 > O uso de conceitos de ciência de dados em cenários que não sejam comerciais tem se mostrado muito eficaz ultimamente. Nesses casos, vale ressaltar as aplicações em que a implementação de sistemas de Big Data se sobressaem, como é o caso de cenários de análise de dados de saúde pública.
 
-> Tendo isso em mente, o projeto englobará a implementação de um data warehouse simples para a base de dados de APAC de Tratamento Dialítico. Nesse contexto, também serão geradas algumas consultas OLAP que possam fornecer insights relevantes, a fim de explicitar a utilidade de tal serviço para aprimorar políticas públicas, ou procedimentos, relacionadas à saúde renal.
+> Tendo isso em mente, o projeto englobará a implementação de um data warehouse simples para a base de dados de APAC de Tratamento Dialítico. Nesse contexto, também serão geradas algumas consultas OLAP que possam fornecer maior detalhe e precisão nos dados gerados, a fim de explicitar a utilidade de tal serviço para aprimorar políticas públicas, ou procedimentos, relacionadas à saúde renal.
 
 > Isso se aplica muito bem levando em conta a região da cidade de Ijuí, a qual possui estabelecimentos de saúde que podem ser considerados de referência, tanto regional como estadual, em questão de tratamentos renais e de suas causas associadas.
 
