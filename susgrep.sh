@@ -24,7 +24,7 @@ ATDRS_AUX_DIR="$SIASUS_DIR/200801_/Auxiliar"
 # Lista de arquivos auxiliares em .cnv
 aux_files_cnv=(
     # "rs_divadm.cnv"  # Algo de regioes administrativas
-    # "rs_micibge.cnv" # Codigo de microregioes
+    "rs_micibge.cnv" # Codigo de microregioes
     # "rs_macsaud.cnv" # Macroregioes de saude???
     "rs_municip.cnv" # Municipios
     # "rs_regmetr.cnv" # Regioes metropolitanas
@@ -44,7 +44,7 @@ aux_files_cnv=(
     "TP_APAC.CNV"    # Tipo de APAC
     # "TP_ATEND.CNV"   # Tipo de atendimento
     # "TP_DROGA.cnv"   # Tipo de droga (droga mesmo, nao remedio)
-    # "TP_ESTAB.CNV"   # Tipo de estabelecimento de saude
+    "TP_ESTAB.CNV"   # Tipo de estabelecimento de saude
     # "UF.CNV"         # Estado brasileiro
     # "UFNACIO.CNV"    # Pais
     # "atd_acevas.cnv" # Tipo acesso vascular
