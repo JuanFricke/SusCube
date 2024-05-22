@@ -16,11 +16,6 @@ style: |
 
 ---
 
-# Processos de negócios do DATASUS...
-
-
----
-
 # Concepção de um plano de projeto
 
 * Uma análise preliminar revelou a extensão considerável e a complexidade do escopo do projeto
