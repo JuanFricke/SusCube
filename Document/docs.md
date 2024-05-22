@@ -73,16 +73,71 @@
 > A partir das informações levantadas, criamos um modelo dimensional que analisa as operações de diálise (fato) a partir das datas de tratamento e processamento, sua localização geográfica dentro do estado, sua saída e por CIDs relacionadas ao tratamento.
 > Para criação desse modelo, foi criado um script **OLAP_schema.sql** que cria Views para cada fato e dimensão, tirando a necessidade de reestruturar os dados e tratá-los novamente. 
 
+*Diagrama ER do modelo dimensional a partir de views do banco de dados gerado*
 ![Diagram ER do modelo dimensional criado](../presentation/photos/ERdiagram_OLAP_model.png)
 
->    
-
 ## 2.3 Um exemplo de Dimensão com Hierarquia
-## 2.4 Granularidade do DW (nível de detalhamento)
-## 2.5 Exemplificação de operações DRILL DOWN/ROLL UP
-## 2.6 Exemplificação de um CUBO DE DADOS (com dados)
-## 2.7 Exemplificação da geração de relatórios usando o Excel (ou outra ferramenta) como ferramenta OLAP
 
-# 3. Entrega
-## 3.1 Entrega do projeto escrito, considerando os itens a e b
-## 3.2 Apresentação do projeto e socialização dos resultados
+> Das dimensões criadas para o cubo de dados deste projeto, duas delas possuem hierarquia:
+> - **Dim_Data**: Ano $\rightarrow$ Trimestre $\rightarrow$ Mês
+> - **Dim_Geografia**: Macro-região $\rightarrow$ Micro-região $\rightarrow$ município 
+
+## 2.4 Granularidade do DW (nível de detalhamento)
+
+> A granularidade do modelo dimensional criado pode ser definida pelo nível mais detalhado de dados que está sendo armazenado. No caso, a granularidade deste cubo de dados está no nível de um atendimento de diálise específico. Isso significa que cada registro na tabela de fatos representa um único evento de diálise, com atributos associados como data de atendimento, estabelecimento, município, características do tratamento, entre outros.
+
+## 2.5 Exemplificação de operações DRILL DOWN/ROLL UP
+
+### Drill Down:
+> Drill Down é o processo de descer para um nível mais detalhado na hierarquia dos dados. Vamos considerar a dimensão de tempo (Dim_Data) para o exemplo:
+> 1. **Nível Superior (Ano)**: Suponha que estamos analisando os valores aprovados (*Fato_Dialise.valor_aprovado*) para diálises no ano de 2022.
+>       ```SQL
+>            SELECT SUM(fd.valor_aprovado) 
+>            FROM main.Fato_Dialise fd
+>            LEFT JOIN main.Dim_Data dd
+>                ON fd.data_processamento = dd.data_completa
+>            WHERE dd.ano = 2022;
+>       ```
+>       - Total de Valor Aprovado em 2022: R$ 202.623.392,05
+> 2. **Drill Down para Nível Inferior (Trimestre)**: Queremos ver a distribuição desse valor por trimestre.
+>       ```SQL
+>            SELECT dd.trimestre, SUM(fd.valor_aprovado) 
+>            FROM main.Fato_Dialise fd
+>            LEFT JOIN main.Dim_Data dd
+>                ON fd.data_processamento = dd.data_completa
+>            WHERE dd.ano = 2022
+>            GROUP BY dd.trimestre;
+>       ```
+>       - 1º Trimestre de 2022: R$ 49.460.060,46
+>       - 2º Trimestre de 2022: R$ 50.949.117,90
+>       - 3º Trimestre de 2022: R$ 51.522.749,18
+>       - 4º Trimestre de 2022: R$ 50.691.464,51
+> 3. **Drill Down para Nível Inferior (Mês)**: Desejamos detalhar o valor aprovado no 2º trimestre por mês.
+>       ```SQL
+>            SELECT dd.mes, SUM(fd.valor_aprovado)
+>            FROM main.Fato_Dialise fd
+>            LEFT JOIN main.Dim_Data dd
+>                ON fd.data_processamento = dd.data_completa
+>            WHERE dd.ano = 2022 AND dd.trimestre = 2
+>            GROUP BY dd.mes;
+>       ```
+>      - Abril de 2023: R$ 16.819.213,47
+>      - Maio de 2023: R$ 17.063.688,62
+>      - Junho de 2023: R$ 16.808.562,42
+
+#### Roll Up:
+> Roll Up é o processo de agregar dados para um nível mais alto na hierarquia.
+> 1. **Nível Inferior (Mês)**: Começamos com os valores aprovados por mês no 2º trimestre de 2023.
+>    - Abril de 2023: R$ 16.819.213,47
+>    - Maio de 2023: R$ 17.063.688,62
+>    - Junho de 2023: R$ 16.808.562,42
+> 
+> 2. **Roll Up para Nível Superior (Trimestre)**: Agregamos os valores mensais para obter o total do trimestre.
+>    - 2º Trimestre de 2023: R$ 50.949.117,90
+> 
+> 3. **Roll Up para Nível Superior (Ano)**: Finalmente, somamos os valores dos trimestres para obter o total anual.
+>    - Total de Valor Aprovado em 2023: R$ 202.623.392,05
+
+## 2.6 Exemplificação de um CUBO DE DADOS (com dados)
+
+## 2.7 Exemplificação da geração de relatórios usando o Excel (ou outra ferramenta) como ferramenta OLAP
