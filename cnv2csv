@@ -37,7 +37,7 @@ def cnv_to_csv(cnv_path):
         cnv_lines = [line for line in cnv_file.readlines() if not line.startswith(';')][1:]
         # cnv_lines = cnv_file.readlines()[1:]
 
-        csv_lines = []
+        csv_lines = ['"indice","descr","codigo"']
         for line in cnv_lines:
             fields = parse_cnv_line(line)
 
@@ -47,7 +47,7 @@ def cnv_to_csv(cnv_path):
 
         # Write .csv
         csv_path = ''.join(os.path.splitext(cnv_path)[:-1]) + '.csv'
-        with open(csv_path, 'w', encoding='iso8859-1') as csv_file:
+        with open(csv_path, 'w', encoding='utf-8') as csv_file:
             csv_file.writelines(line + '\n' for line in csv_lines)
 
 help_msg = 'Usage: ./cnv2csv file.cnv'
